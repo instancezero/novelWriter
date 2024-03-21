@@ -1344,6 +1344,16 @@ class GuiMain(QMainWindow):
         self.addAction(self.mainMenu.aInsTimes)
         self.addAction(self.mainMenu.aInsDivide)
         self.addAction(self.mainMenu.aInsSynopsis)
+        self.addAction(self.mainMenu.aInsClimax)
+        self.addAction(self.mainMenu.aInsComplication)
+        self.addAction(self.mainMenu.aInsCrisis)
+        self.addAction(self.mainMenu.aInsDuration)
+        self.addAction(self.mainMenu.aInsIncite)
+        self.addAction(self.mainMenu.aInsPolarity)
+        self.addAction(self.mainMenu.aInsResolution)
+        self.addAction(self.mainMenu.aInsShift)
+        self.addAction(self.mainMenu.aInsTurning)
+        self.addAction(self.mainMenu.aInsWhen)
         self.addAction(self.mainMenu.aInsShort)
 
         for mAction, _ in self.mainMenu.mInsKWItems.values():

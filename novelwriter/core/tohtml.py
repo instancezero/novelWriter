@@ -74,7 +74,7 @@ class ToHtml(Tokenizer):
     #  Setters
     ##
 
-    def setPreview(self, doComments: bool, doSynopsis: bool) -> None:
+    def setPreview(self, doComments: bool, doSynopsis: bool, doStructure: bool) -> None:
         """If we're using this class to generate markdown preview, we
         need to make a few changes to formatting, which is managed by
         these flags.
@@ -83,6 +83,7 @@ class ToHtml(Tokenizer):
         self._doKeywords = True
         self._doComments = doComments
         self._doSynopsis = doSynopsis
+        self._doStructure = doStructure
         return
 
     def setStyles(self, cssStyles: bool) -> None:
@@ -170,6 +171,8 @@ class ToHtml(Tokenizer):
         para = []
         pStyle = None
         lines = []
+        structure = []
+        structureInsert = -1
 
         for tType, nHead, tText, tFormat, tStyle in self._tokens:
 
@@ -292,12 +295,22 @@ class ToHtml(Tokenizer):
             elif tType == self.T_SHORT and self._doSynopsis:
                 lines.append(self._formatSynopsis(tText, False))
 
+            elif self._doStructure and tType in self.T_STRUCTURE_LIST:
+                if structureInsert == -1:
+                    structureInsert = len(lines)
+                    lines.append("[structure]")
+                structure.append(self._formatStructure(tType, tText))
+
             elif tType == self.T_COMMENT and self._doComments:
                 lines.append(self._formatComments(tText))
 
             elif tType == self.T_KEYWORD and self._doKeywords:
                 tTemp = f"<p{hStyle}>{self._formatKeywords(tText)}</p>\n"
                 lines.append(tTemp)
+
+        if structureInsert != -1:
+            structureText = "".join(structure)
+            lines[structureInsert] = f"<p class='synopsis'>{structureText}</p>"
 
         self._result = "".join(lines)
         if self._genMode != self.M_PREVIEW:
@@ -466,6 +479,36 @@ class ToHtml(Tokenizer):
             return f"<p class='comment'><span class='synopsis'>{sSynop}:</span> {text}</p>\n"
         else:
             return f"<p class='synopsis'><strong>{sSynop}:</strong> {text}</p>\n"
+
+    def _formatStructure(self, type: int, text: str) -> str:
+        """Apply HTML formatting to scene structure."""
+        if type == self.T_CLIMAX:
+            element = "Climax"
+        elif type == self.T_COMPLICATION:
+            element = "Complication"
+        elif type == self.T_CRISIS:
+            element = "Crisis"
+        elif type == self.T_DURATION:
+            element = "Duration"
+        elif type == self.T_INCITE:
+            element = "Inciting Incident"
+        elif type == self.T_POLARITY:
+            element = "Polarity"
+        elif type == self.T_RESOLUTION:
+            element = "Resolution"
+        elif type == self.T_SHIFT:
+            element = "Value Shift"
+        elif type == self.T_TURNING:
+            element = "Turning Point"
+        elif type == self.T_WHEN:
+            element = "Date/Time"
+        else:
+            element = "undef"
+
+        if self._genMode == self.M_PREVIEW:
+            return f"<span class='comment'><span class='synopsis'>{element}:</span> {text}</span><br>\n"
+        else:
+            return f"<p class='synopsis'><strong>{element}:</strong> {text}</p>\n"
 
     def _formatComments(self, text: str) -> str:
         """Apply HTML formatting to comments."""

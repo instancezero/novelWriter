@@ -60,6 +60,7 @@ SETTINGS_TEMPLATE = {
     "headings.hideScene":     (bool, False),
     "headings.hideSection":   (bool, True),
     "text.includeSynopsis":   (bool, False),
+    "text.includeStructure":   (bool, False),
     "text.includeComments":   (bool, False),
     "text.includeKeywords":   (bool, False),
     "text.includeBodyText":   (bool, True),
@@ -101,6 +102,7 @@ SETTINGS_LABELS = {
 
     "text.grpContent":        QT_TRANSLATE_NOOP("Builds", "Text Content"),
     "text.includeSynopsis":   QT_TRANSLATE_NOOP("Builds", "Include Synopsis"),
+    "text.includeStructure":  QT_TRANSLATE_NOOP("Builds", "Include Structure"),
     "text.includeComments":   QT_TRANSLATE_NOOP("Builds", "Include Comments"),
     "text.includeKeywords":   QT_TRANSLATE_NOOP("Builds", "Include Keywords"),
     "text.includeBodyText":   QT_TRANSLATE_NOOP("Builds", "Include Body Text"),

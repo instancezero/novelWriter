@@ -314,43 +314,63 @@ class GuiOutlineToolBar(QToolBar):
 class GuiOutlineTree(QTreeWidget):
 
     DEF_WIDTH = {
-        nwOutline.TITLE:  200,
-        nwOutline.LEVEL:  40,
-        nwOutline.LABEL:  150,
-        nwOutline.LINE:   40,
-        nwOutline.CCOUNT: 50,
-        nwOutline.WCOUNT: 50,
-        nwOutline.PCOUNT: 50,
-        nwOutline.POV:    100,
-        nwOutline.FOCUS:  100,
-        nwOutline.CHAR:   100,
-        nwOutline.PLOT:   100,
-        nwOutline.TIME:   100,
-        nwOutline.WORLD:  100,
-        nwOutline.OBJECT: 100,
-        nwOutline.ENTITY: 100,
-        nwOutline.CUSTOM: 100,
-        nwOutline.SYNOP:  200,
+        nwOutline.TITLE:        200,
+        nwOutline.LEVEL:        40,
+        nwOutline.LABEL:        150,
+        nwOutline.LINE:         40,
+        nwOutline.CCOUNT:       50,
+        nwOutline.WCOUNT:       50,
+        nwOutline.PCOUNT:       50,
+        nwOutline.POV:          100,
+        nwOutline.FOCUS:        100,
+        nwOutline.CHAR:         100,
+        nwOutline.PLOT:         100,
+        nwOutline.TIME:         100,
+        nwOutline.WORLD:        100,
+        nwOutline.OBJECT:       100,
+        nwOutline.ENTITY:       100,
+        nwOutline.CUSTOM:       100,
+        nwOutline.SYNOP:        200,
+        nwOutline.CLIMAX:       200,
+        nwOutline.COMPLICATION: 200,
+        nwOutline.CRISIS:       200,
+        nwOutline.DURATION:     200,
+        nwOutline.INCITE:       200,
+        nwOutline.POLARITY:     200,
+        nwOutline.RESOLUTION:   200,
+        nwOutline.SHIFT:        200,
+        nwOutline.TURNING:      200,
+        nwOutline.WHEN:         200,
     }
 
     DEF_HIDDEN = {
-        nwOutline.TITLE:  False,
-        nwOutline.LEVEL:  True,
-        nwOutline.LABEL:  False,
-        nwOutline.LINE:   True,
-        nwOutline.CCOUNT: True,
-        nwOutline.WCOUNT: False,
-        nwOutline.PCOUNT: False,
-        nwOutline.POV:    False,
-        nwOutline.FOCUS:  True,
-        nwOutline.CHAR:   False,
-        nwOutline.PLOT:   False,
-        nwOutline.TIME:   True,
-        nwOutline.WORLD:  False,
-        nwOutline.OBJECT: True,
-        nwOutline.ENTITY: True,
-        nwOutline.CUSTOM: True,
-        nwOutline.SYNOP:  False,
+        nwOutline.TITLE:        False,
+        nwOutline.LEVEL:        True,
+        nwOutline.LABEL:        False,
+        nwOutline.LINE:         True,
+        nwOutline.CCOUNT:       True,
+        nwOutline.WCOUNT:       False,
+        nwOutline.PCOUNT:       False,
+        nwOutline.POV:          False,
+        nwOutline.FOCUS:        True,
+        nwOutline.CHAR:         False,
+        nwOutline.PLOT:         False,
+        nwOutline.TIME:         True,
+        nwOutline.WORLD:        False,
+        nwOutline.OBJECT:       True,
+        nwOutline.ENTITY:       True,
+        nwOutline.CUSTOM:       True,
+        nwOutline.SYNOP:        False,
+        nwOutline.CLIMAX:       True,
+        nwOutline.COMPLICATION: True,
+        nwOutline.CRISIS:       True,
+        nwOutline.DURATION:     True,
+        nwOutline.INCITE:       True,
+        nwOutline.POLARITY:     True,
+        nwOutline.RESOLUTION:   True,
+        nwOutline.SHIFT:        True,
+        nwOutline.TURNING:      True,
+        nwOutline.WHEN:         True,
     }
 
     D_HANDLE = Qt.ItemDataRole.UserRole
@@ -702,6 +722,18 @@ class GuiOutlineTree(QTreeWidget):
             trItem.setText(self._colIdx[nwOutline.LABEL], nwItem.itemName)
             trItem.setText(self._colIdx[nwOutline.LINE], f"{novIdx.line:n}")
             trItem.setText(self._colIdx[nwOutline.SYNOP], novIdx.synopsis)
+
+            trItem.setText(self._colIdx[nwOutline.CLIMAX], novIdx.climax)
+            trItem.setText(self._colIdx[nwOutline.COMPLICATION], novIdx.complication)
+            trItem.setText(self._colIdx[nwOutline.CRISIS], novIdx.crisis)
+            trItem.setText(self._colIdx[nwOutline.DURATION], novIdx.duration)
+            trItem.setText(self._colIdx[nwOutline.INCITE], novIdx.incite)
+            trItem.setText(self._colIdx[nwOutline.POLARITY], novIdx.polarity)
+            trItem.setText(self._colIdx[nwOutline.RESOLUTION], novIdx.resolution)
+            trItem.setText(self._colIdx[nwOutline.SHIFT], novIdx.shift)
+            trItem.setText(self._colIdx[nwOutline.TURNING], novIdx.turning)
+            trItem.setText(self._colIdx[nwOutline.WHEN], novIdx.when)
+
             trItem.setText(self._colIdx[nwOutline.CCOUNT], f"{novIdx.charCount:n}")
             trItem.setText(self._colIdx[nwOutline.WCOUNT], f"{novIdx.wordCount:n}")
             trItem.setText(self._colIdx[nwOutline.PCOUNT], f"{novIdx.paraCount:n}")
@@ -1036,6 +1068,16 @@ class GuiOutlineDetails(QScrollArea):
             self.pCValue.setText(f"{checkInt(novIdx.paraCount, 0):n}")
 
             self.synopValue.setText(novIdx.synopsis)
+            self.climaxValue.setText(novIdx.climax)
+            self.complicationValue.setText(novIdx.complication)
+            self.crisisValue.setText(novIdx.crisis)
+            self.durationValue.setText(novIdx.duration)
+            self.inciteValue.setText(novIdx.incite)
+            self.polarityValue.setText(novIdx.polarity)
+            self.resolutionValue.setText(novIdx.resolution)
+            self.shiftValue.setText(novIdx.shift)
+            self.turningValue.setText(novIdx.turning)
+            self.whenValue.setText(novIdx.when)
 
             self.povKeyValue.setText(self._formatTags(novRefs, nwKeyWords.POV_KEY))
             self.focKeyValue.setText(self._formatTags(novRefs, nwKeyWords.FOCUS_KEY))

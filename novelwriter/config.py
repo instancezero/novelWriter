@@ -177,11 +177,12 @@ class Config:
         self.spellLanguage = "en"
 
         # State
-        self.showViewerPanel = True   # The panel for the viewer is visible
-        self.showEditToolBar = False  # The document editor toolbar visibility
-        self.useShortcodes   = False  # Use shortcodes for basic formatting
-        self.viewComments    = True   # Comments are shown in the viewer
-        self.viewSynopsis    = True   # Synopsis is shown in the viewer
+        self.showViewerPanel  = True   # The panel for the viewer is visible
+        self.showEditToolBar  = False  # The document editor toolbar visibility
+        self.useShortcodes    = False  # Use shortcodes for basic formatting
+        self.viewComments     = True   # Comments are shown in the viewer
+        self.viewSynopsis     = True   # Synopsis is shown in the viewer
+        self.viewStructure    = True   # Scene structure comments are shown in the viewer
 
         # Search Bar Switches
         self.searchCase     = False
@@ -600,17 +601,18 @@ class Config:
 
         # State
         sec = "State"
-        self.showViewerPanel = conf.rdBool(sec, "showviewerpanel", self.showViewerPanel)
-        self.showEditToolBar = conf.rdBool(sec, "showedittoolbar", self.showEditToolBar)
-        self.useShortcodes   = conf.rdBool(sec, "useshortcodes", self.useShortcodes)
-        self.viewComments    = conf.rdBool(sec, "viewcomments", self.viewComments)
-        self.viewSynopsis    = conf.rdBool(sec, "viewsynopsis", self.viewSynopsis)
-        self.searchCase      = conf.rdBool(sec, "searchcase", self.searchCase)
-        self.searchWord      = conf.rdBool(sec, "searchword", self.searchWord)
-        self.searchRegEx     = conf.rdBool(sec, "searchregex", self.searchRegEx)
-        self.searchLoop      = conf.rdBool(sec, "searchloop", self.searchLoop)
-        self.searchNextFile  = conf.rdBool(sec, "searchnextfile", self.searchNextFile)
-        self.searchMatchCap  = conf.rdBool(sec, "searchmatchcap", self.searchMatchCap)
+        self.showViewerPanel  = conf.rdBool(sec, "showviewerpanel", self.showViewerPanel)
+        self.showEditToolBar  = conf.rdBool(sec, "showedittoolbar", self.showEditToolBar)
+        self.useShortcodes    = conf.rdBool(sec, "useshortcodes", self.useShortcodes)
+        self.viewComments     = conf.rdBool(sec, "viewcomments", self.viewComments)
+        self.viewSynopsis     = conf.rdBool(sec, "viewsynopsis", self.viewSynopsis)
+        self.viewStructure    = conf.rdBool(sec, "viewstructure", self.viewStructure)
+        self.searchCase       = conf.rdBool(sec, "searchcase", self.searchCase)
+        self.searchWord       = conf.rdBool(sec, "searchword", self.searchWord)
+        self.searchRegEx      = conf.rdBool(sec, "searchregex", self.searchRegEx)
+        self.searchLoop       = conf.rdBool(sec, "searchloop", self.searchLoop)
+        self.searchNextFile   = conf.rdBool(sec, "searchnextfile", self.searchNextFile)
+        self.searchMatchCap   = conf.rdBool(sec, "searchmatchcap", self.searchMatchCap)
 
         # Check Values
         # ============
@@ -706,17 +708,18 @@ class Config:
         }
 
         conf["State"] = {
-            "showviewerpanel": str(self.showViewerPanel),
-            "showedittoolbar": str(self.showEditToolBar),
-            "useshortcodes":   str(self.useShortcodes),
-            "viewcomments":    str(self.viewComments),
-            "viewsynopsis":    str(self.viewSynopsis),
-            "searchcase":      str(self.searchCase),
-            "searchword":      str(self.searchWord),
-            "searchregex":     str(self.searchRegEx),
-            "searchloop":      str(self.searchLoop),
-            "searchnextfile":  str(self.searchNextFile),
-            "searchmatchcap":  str(self.searchMatchCap),
+            "showviewerpanel":  str(self.showViewerPanel),
+            "showedittoolbar":  str(self.showEditToolBar),
+            "useshortcodes":    str(self.useShortcodes),
+            "viewcomments":     str(self.viewComments),
+            "viewsynopsis":     str(self.viewSynopsis),
+            "viewstructure":    str(self.viewStructure),
+            "searchcase":       str(self.searchCase),
+            "searchword":       str(self.searchWord),
+            "searchregex":      str(self.searchRegEx),
+            "searchloop":       str(self.searchLoop),
+            "searchnextfile":   str(self.searchNextFile),
+            "searchmatchcap":   str(self.searchMatchCap),
         }
 
         # Write config file

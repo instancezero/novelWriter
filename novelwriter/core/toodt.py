@@ -487,6 +487,46 @@ class ToOdt(Tokenizer):
                 tTemp, fTemp = self._formatSynopsis(tText, False)
                 self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
 
+            elif tType == self.T_CLIMAX and self._doStructure:
+                tTemp, fTemp = self._formatClimax(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_COMPLICATION and self._doStructure:
+                tTemp, fTemp = self._formatComplication(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_CRISIS and self._doStructure:
+                tTemp, fTemp = self._formatCrisis(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_DURATION and self._doStructure:
+                tTemp, fTemp = self._formatDuration(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_INCITE and self._doStructure:
+                tTemp, fTemp = self._formatIncite(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_POLARITY and self._doStructure:
+                tTemp, fTemp = self._formatPolarity(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_RESOLUTION and self._doStructure:
+                tTemp, fTemp = self._formatResolution(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_SHIFT and self._doStructure:
+                tTemp, fTemp = self._formatShift(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_TURNING and self._doStructure:
+                tTemp, fTemp = self._formatTurning(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
+            elif tType == self.T_WHEN and self._doStructure:
+                tTemp, fTemp = self._formatWhen(tText)
+                self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
+
             elif tType == self.T_COMMENT and self._doComments:
                 tTemp, fTemp = self._formatComments(tText)
                 self._addTextPar("Text_20_Meta", oStyle, tTemp, tFmt=fTemp)
@@ -561,6 +601,76 @@ class ToOdt(Tokenizer):
             name = self._localLookup("Synopsis")
         else:
             name = self._localLookup("Short Description")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatClimax(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to climax lines."""
+        name = self._localLookup("Climax")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatComplication(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to complication lines."""
+        name = self._localLookup("Complication")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatCrisis(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to crisis lines."""
+        name = self._localLookup("Crisis")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatDuration(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to duration lines."""
+        name = self._localLookup("Duration")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatIncite(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to incite lines."""
+        name = self._localLookup("Incite")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatPolarity(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to polarity lines."""
+        name = self._localLookup("Polarity")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatResolution(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to resolution lines."""
+        name = self._localLookup("Resolution")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatShift(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to shift lines."""
+        name = self._localLookup("Shift")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatTurning(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to turning lines."""
+        name = self._localLookup("Turning")
+        rTxt = f"{name}: {text}"
+        rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
+        return rTxt, rFmt
+
+    def _formatWhen(self, text: str) -> tuple[str, list[tuple[int, int]]]:
+        """Apply formatting to "when" lines."""
+        name = self._localLookup("When")
         rTxt = f"{name}: {text}"
         rFmt = [(0, self.FMT_B_B), (len(name) + 1, self.FMT_B_E)]
         return rTxt, rFmt

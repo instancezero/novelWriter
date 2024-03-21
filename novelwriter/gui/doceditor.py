@@ -56,7 +56,7 @@ from novelwriter import CONFIG, SHARED
 from novelwriter.enum import nwDocAction, nwDocInsert, nwDocMode, nwItemClass, nwTrinary
 from novelwriter.common import minmax, transferCase
 from novelwriter.constants import nwKeyWords, nwLabels, nwShortcode, nwUnicode, trConst
-from novelwriter.core.index import countWords
+from novelwriter.core.index import countWords, CLASSIFIERS
 from novelwriter.tools.lipsum import GuiLipsum
 from novelwriter.core.document import NWDocument
 from novelwriter.gui.dochighlight import GuiDocHighlighter
@@ -834,6 +834,46 @@ class GuiDocEditor(QPlainTextEdit):
                 goAfter = True
             elif insert == nwDocInsert.SHORT:
                 text = "%Short: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.CLIMAX:
+                text = "%Climax: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.COMPLICATION:
+                text = "%Complication: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.CRISIS:
+                text = "%Crisis: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.DURATION:
+                text = "%Duration: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.INCITE:
+                text = "%Incite: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.POLARITY:
+                text = "%Polarity: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.RESOLUTION:
+                text = "%Resolution: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.SHIFT:
+                text = "%Shift: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.TURNING:
+                text = "%Turning: "
+                newBlock = True
+                goAfter = True
+            elif insert == nwDocInsert.WHEN:
+                text = "%When: "
                 newBlock = True
                 goAfter = True
             elif insert == nwDocInsert.NEW_PAGE:
@@ -2022,7 +2062,8 @@ class GuiDocEditor(QPlainTextEdit):
             if text[0] == "@":
                 return False
             if text[0] == "%":
-                if text[1:].lstrip()[:9].lower() == "synopsis:":
+                key, _, remainder = text[1:].partition(":")
+                if key in CLASSIFIERS:
                     return False
         return True
 

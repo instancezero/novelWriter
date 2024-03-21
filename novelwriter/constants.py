@@ -249,6 +249,16 @@ class nwLabels:
         nwOutline.ENTITY: KEY_NAME[nwKeyWords.ENTITY_KEY],
         nwOutline.CUSTOM: KEY_NAME[nwKeyWords.CUSTOM_KEY],
         nwOutline.SYNOP:  QT_TRANSLATE_NOOP("Constant", "Synopsis"),
+        nwOutline.CLIMAX: QT_TRANSLATE_NOOP("Constant", "Climax"),
+        nwOutline.COMPLICATION: QT_TRANSLATE_NOOP("Constant", "Complication"),
+        nwOutline.CRISIS: QT_TRANSLATE_NOOP("Constant", "Crisis"),
+        nwOutline.DURATION: QT_TRANSLATE_NOOP("Constant", "Duration"),
+        nwOutline.INCITE: QT_TRANSLATE_NOOP("Constant", "Incite"),
+        nwOutline.POLARITY: QT_TRANSLATE_NOOP("Constant", "Polarity"),
+        nwOutline.RESOLUTION: QT_TRANSLATE_NOOP("Constant", "Resolution"),
+        nwOutline.SHIFT: QT_TRANSLATE_NOOP("Constant", "Shift"),
+        nwOutline.TURNING: QT_TRANSLATE_NOOP("Constant", "Turning"),
+        nwOutline.WHEN: QT_TRANSLATE_NOOP("Constant", "When"),
     }
     BUILD_FMT = {
         nwBuildFmt.ODT:    QT_TRANSLATE_NOOP("Constant", "Open Document (.odt)"),
@@ -259,6 +269,8 @@ class nwLabels:
         nwBuildFmt.EXT_MD: QT_TRANSLATE_NOOP("Constant", "Extended Markdown (.md)"),
         nwBuildFmt.J_HTML: QT_TRANSLATE_NOOP("Constant", "JSON + novelWriter HTML (.json)"),
         nwBuildFmt.J_NWD:  QT_TRANSLATE_NOOP("Constant", "JSON + novelWriter Markup (.json)"),
+        nwBuildFmt.C_SS:   QT_TRANSLATE_NOOP("Constant", "Scene Structure Comma-Separated (.csv)"),
+        nwBuildFmt.J_SS:   QT_TRANSLATE_NOOP("Constant", "Scene Structure JSON (.json)"),
     }
     BUILD_EXT = {
         nwBuildFmt.ODT:    ".odt",
@@ -269,6 +281,8 @@ class nwLabels:
         nwBuildFmt.EXT_MD: ".md",
         nwBuildFmt.J_HTML: ".json",
         nwBuildFmt.J_NWD:  ".json",
+        nwBuildFmt.C_SS:   ".csv",
+        nwBuildFmt.J_SS:   ".json",
     }
     FILE_FILTERS = {
         "*.txt": QT_TRANSLATE_NOOP("Constant", "Text files"),

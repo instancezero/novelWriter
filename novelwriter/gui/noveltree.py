@@ -761,6 +761,17 @@ class GuiNovelTree(QTreeWidget):
             synopText = f"<p><b>{synopLabel}</b>: {synopText}</p>"
 
         refLines = []
+        refLines = self._appendStructure(novIdx.climax, nwOutline.CLIMAX, refLines)
+        refLines = self._appendStructure(novIdx.complication, nwOutline.COMPLICATION, refLines)
+        refLines = self._appendStructure(novIdx.crisis, nwOutline.CRISIS, refLines)
+        refLines = self._appendStructure(novIdx.duration, nwOutline.DURATION, refLines)
+        refLines = self._appendStructure(novIdx.incite, nwOutline.INCITE, refLines)
+        refLines = self._appendStructure(novIdx.polarity, nwOutline.POLARITY, refLines)
+        refLines = self._appendStructure(novIdx.resolution, nwOutline.RESOLUTION, refLines)
+        refLines = self._appendStructure(novIdx.shift, nwOutline.SHIFT, refLines)
+        refLines = self._appendStructure(novIdx.turning, nwOutline.TURNING, refLines)
+        refLines = self._appendStructure(novIdx.when, nwOutline.WHEN, refLines)
+
         refLines = self._appendMetaTag(refTags, nwKeyWords.POV_KEY, refLines)
         refLines = self._appendMetaTag(refTags, nwKeyWords.FOCUS_KEY, refLines)
         refLines = self._appendMetaTag(refTags, nwKeyWords.CHAR_KEY, refLines)
@@ -788,6 +799,14 @@ class GuiNovelTree(QTreeWidget):
         tags = ", ".join(refs.get(key, []))
         if tags:
             lines.append(f"<b>{trConst(nwLabels.KEY_NAME[key])}</b>: {tags}")
+        return lines
+
+    @staticmethod
+    def _appendStructure(text: str, key: nwOutline, lines: list[str]) -> list[str]:
+        """Generate a reference list for a given structure key."""
+        if text:
+            label = trConst(nwLabels.OUTLINE_COLS[key])
+            lines.append(f"<p><b>{label}</b>: {text}</p>")
         return lines
 
 # END Class GuiNovelTree

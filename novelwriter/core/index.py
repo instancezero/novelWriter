@@ -342,6 +342,26 @@ class NWIndex:
                     cStyle, cText, _ = processComment(line)
                     if cStyle in (nwComment.SYNOPSIS, nwComment.SHORT):
                         self._itemIndex.setHeadingSynopsis(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.CLIMAX:
+                        self._itemIndex.setHeadingClimax(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.COMPLICATION:
+                        self._itemIndex.setHeadingComplication(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.CRISIS:
+                        self._itemIndex.setHeadingCrisis(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.DURATION:
+                        self._itemIndex.setHeadingDuration(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.INCITE:
+                        self._itemIndex.setHeadingIncite(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.POLARITY:
+                        self._itemIndex.setHeadingPolarity(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.RESOLUTION:
+                        self._itemIndex.setHeadingResolution(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.SHIFT:
+                        self._itemIndex.setHeadingShift(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.TURNING:
+                        self._itemIndex.setHeadingTurning(tHandle, cTitle, cText)
+                    elif cStyle == nwComment.WHEN:
+                        self._itemIndex.setHeadingWhen(tHandle, cTitle, cText)
 
         # Count words for remaining text after last heading
         if pTitle != TT_NONE:
@@ -936,6 +956,66 @@ class ItemIndex:
             self._items[tHandle].setHeadingSynopsis(sTitle, text)
         return
 
+    def setHeadingClimax(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the climax text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingClimax(sTitle, text)
+        return
+
+    def setHeadingComplication(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the complication text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingComplication(sTitle, text)
+        return
+
+    def setHeadingCrisis(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the crisis text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingCrisis(sTitle, text)
+        return
+
+    def setHeadingDuration(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the duration text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingDuration(sTitle, text)
+        return
+
+    def setHeadingIncite(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the incite text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingIncite(sTitle, text)
+        return
+
+    def setHeadingPolarity(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the polarity text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingPolarity(sTitle, text)
+        return
+
+    def setHeadingResolution(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the resolution text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingResolution(sTitle, text)
+        return
+
+    def setHeadingShift(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the shift text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingShift(sTitle, text)
+        return
+
+    def setHeadingTurning(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the turning text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingTurning(sTitle, text)
+        return
+
+    def setHeadingWhen(self, tHandle: str, sTitle: str, text: str) -> None:
+        """Set the when text for a heading on a given item."""
+        if tHandle in self._items:
+            self._items[tHandle].setHeadingWhen(sTitle, text)
+        return
+
     def setHeadingTag(self, tHandle: str, sTitle: str, tagKey: str) -> None:
         """Set the main tag for a heading on a given item."""
         if tHandle in self._items:
@@ -1049,10 +1129,70 @@ class IndexItem:
             self._headings[sTitle].setSynopsis(text)
         return
 
+    def setHeadingClimax(self, sTitle: str, text: str) -> None:
+        """Set the climax text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setClimax(text)
+        return
+
+    def setHeadingComplication(self, sTitle: str, text: str) -> None:
+        """Set the complication text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setComplication(text)
+        return
+
+    def setHeadingCrisis(self, sTitle: str, text: str) -> None:
+        """Set the crisis text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setCrisis(text)
+        return
+
+    def setHeadingDuration(self, sTitle: str, text: str) -> None:
+        """Set the duration text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setDuration(text)
+        return
+
+    def setHeadingIncite(self, sTitle: str, text: str) -> None:
+        """Set the incite text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setIncite(text)
+        return
+
+    def setHeadingPolarity(self, sTitle: str, text: str) -> None:
+        """Set the polarity text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setPolarity(text)
+        return
+
+    def setHeadingResolution(self, sTitle: str, text: str) -> None:
+        """Set the resolution text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setResolution(text)
+        return
+
+    def setHeadingShift(self, sTitle: str, text: str) -> None:
+        """Set the shift text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setShift(text)
+        return
+
+    def setHeadingTurning(self, sTitle: str, text: str) -> None:
+        """Set the turning text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setTurning(text)
+        return
+
     def setHeadingTag(self, sTitle: str, tagKey: str) -> None:
         """Set the tag of a heading."""
         if sTitle in self._headings:
             self._headings[sTitle].setTag(tagKey)
+        return
+
+    def setHeadingWhen(self, sTitle: str, text: str) -> None:
+        """Set the "when" text of a heading."""
+        if sTitle in self._headings:
+            self._headings[sTitle].setWhen(text)
         return
 
     def addHeadingRef(self, sTitle: str, tagKeys: list[str], refType: str) -> None:
@@ -1130,6 +1270,8 @@ class IndexHeading:
     __slots__ = (
         "_key", "_line", "_level", "_title", "_charCount", "_wordCount",
         "_paraCount", "_synopsis", "_tag", "_refs",
+        "_climax", "_complication", "_crisis", "_duration", "_incite",
+        "_polarity", "_resolution", "_shift", "_turning", "_when",
     )
 
     def __init__(self, key: str, line: int = 0, level: str = "H0", title: str = "") -> None:
@@ -1142,6 +1284,16 @@ class IndexHeading:
         self._wordCount = 0
         self._paraCount = 0
         self._synopsis = ""
+        self._climax = ""
+        self._complication = ""
+        self._crisis = ""
+        self._duration = ""
+        self._incite = ""
+        self._polarity = ""
+        self._resolution = ""
+        self._shift = ""
+        self._turning = ""
+        self._when = ""
 
         self._tag = ""
         self._refs: dict[str, set[str]] = {}
@@ -1188,6 +1340,46 @@ class IndexHeading:
         return self._synopsis
 
     @property
+    def climax(self) -> str:
+        return self._climax
+
+    @property
+    def complication(self) -> str:
+        return self._complication
+
+    @property
+    def crisis(self) -> str:
+        return self._crisis
+
+    @property
+    def duration(self) -> str:
+        return self._duration
+
+    @property
+    def incite(self) -> str:
+        return self._incite
+
+    @property
+    def polarity(self) -> str:
+        return self._polarity
+
+    @property
+    def resolution(self) -> str:
+        return self._resolution
+
+    @property
+    def shift(self) -> str:
+        return self._shift
+
+    @property
+    def turning(self) -> str:
+        return self._turning
+
+    @property
+    def when(self) -> str:
+        return self._when
+
+    @property
     def tag(self) -> str:
         return self._tag
 
@@ -1224,6 +1416,56 @@ class IndexHeading:
         self._synopsis = str(text)
         return
 
+    def setClimax(self, text: str) -> None:
+        """Set the climax text and make sure it is a string."""
+        self._climax = str(text)
+        return
+
+    def setComplication(self, text: str) -> None:
+        """Set the complication text and make sure it is a string."""
+        self._complication = str(text)
+        return
+
+    def setCrisis(self, text: str) -> None:
+        """Set the crisis text and make sure it is a string."""
+        self._crisis = str(text)
+        return
+
+    def setDuration(self, text: str) -> None:
+        """Set the duration text and make sure it is a string."""
+        self._duration = str(text)
+        return
+
+    def setIncite(self, text: str) -> None:
+        """Set the incite text and make sure it is a string."""
+        self._incite = str(text)
+        return
+
+    def setpolarity(self, text: str) -> None:
+        """Set the polarity text and make sure it is a string."""
+        self._polarity = str(text)
+        return
+
+    def setResolution(self, text: str) -> None:
+        """Set the synopsis text and make sure it is a string."""
+        self._resolution = str(text)
+        return
+
+    def setShift(self, text: str) -> None:
+        """Set the shift text and make sure it is a string."""
+        self._shift = str(text)
+        return
+
+    def setTurning(self, text: str) -> None:
+        """Set the turning text and make sure it is a string."""
+        self._turning = str(text)
+        return
+
+    def setWhen(self, text: str) -> None:
+        """Set the "when" text and make sure it is a string."""
+        self._when = str(text)
+        return
+
     def setTag(self, tagKey: str) -> None:
         """Set the tag for references, and make sure it is a string."""
         self._tag = str(tagKey).lower()
@@ -1255,6 +1497,16 @@ class IndexHeading:
             "wCount": self._wordCount,
             "pCount": self._paraCount,
             "synopsis": self._synopsis,
+            "climax": self._climax,
+            "complication": self._complication,
+            "crisis": self._crisis,
+            "duration": self._duration,
+            "incite": self._incite,
+            "polarity": self._polarity,
+            "resolution": self._resolution,
+            "shift": self._shift,
+            "turning": self._turning,
+            "when": self._when,
         }
 
     def packReferences(self) -> dict[str, str]:
@@ -1277,6 +1529,16 @@ class IndexHeading:
             data.get("pCount", 0),
         )
         self._synopsis = str(data.get("synopsis", ""))
+        self._climax = str(data.get("climax", ""))
+        self._complication = str(data.get("complication", ""))
+        self._crisis = str(data.get("crisis", ""))
+        self._duration = str(data.get("duration", ""))
+        self._incite = str(data.get("incite", ""))
+        self._polarity = str(data.get("polarity", ""))
+        self._resolution = str(data.get("resolution", ""))
+        self._shift = str(data.get("shift", ""))
+        self._turning = str(data.get("turning", ""))
+        self._when = str(data.get("when", ""))
         return
 
     def unpackReferences(self, data: dict) -> None:
@@ -1303,6 +1565,16 @@ class IndexHeading:
 CLASSIFIERS = {
     "short": nwComment.SHORT,
     "synopsis": nwComment.SYNOPSIS,
+    "climax": nwComment.CLIMAX,
+    "complication": nwComment.COMPLICATION,
+    "crisis": nwComment.CRISIS,
+    "duration": nwComment.DURATION,
+    "incite": nwComment.INCITE,
+    "polarity": nwComment.POLARITY,
+    "resolution": nwComment.RESOLUTION,
+    "shift": nwComment.SHIFT,
+    "turning": nwComment.TURNING,
+    "when": nwComment.WHEN,
 }
 
 

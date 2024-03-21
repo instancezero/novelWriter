@@ -174,6 +174,46 @@ class ToMarkdown(Tokenizer):
                 label = self._localLookup("Short Description")
                 lines.append(f"**{label}:** {tText}\n\n")
 
+            elif tType == self.T_CLIMAX and self._doStructure:
+                label = self._localLookup("Climax")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_COMPLICATION and self._doStructure:
+                label = self._localLookup("Complication")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_CRISIS and self._doStructure:
+                label = self._localLookup("Crisis")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_DURATION and self._doStructure:
+                label = self._localLookup("Duration")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_INCITE and self._doStructure:
+                label = self._localLookup("Incite")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_POLARITY and self._doStructure:
+                label = self._localLookup("Polarity")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_RESOLUTION and self._doStructure:
+                label = self._localLookup("Resolution")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_SHIFT and self._doStructure:
+                label = self._localLookup("Shift")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_TURNING and self._doStructure:
+                label = self._localLookup("Turning")
+                lines.append(f"**{label}:** {tText}\n\n")
+
+            elif tType == self.T_WHEN and self._doStructure:
+                label = self._localLookup("When")
+                lines.append(f"**{label}:** {tText}\n\n")
+
             elif tType == self.T_COMMENT and self._doComments:
                 label = self._localLookup("Comment")
                 lines.append(f"**{label}:** {tText}\n\n")

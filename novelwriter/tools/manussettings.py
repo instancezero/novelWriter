@@ -895,12 +895,14 @@ class _ContentTab(NScrollableForm):
 
         # Text Content
         self.incSynopsis = NSwitch(self, height=iPx)
+        self.incStructure = NSwitch(self, height=iPx)
         self.incComments = NSwitch(self, height=iPx)
         self.incKeywords = NSwitch(self, height=iPx)
         self.incBodyText = NSwitch(self, height=iPx)
 
         self.addGroupLabel(self._build.getLabel("text.grpContent"))
         self.addRow(self._build.getLabel("text.includeSynopsis"), self.incSynopsis)
+        self.addRow(self._build.getLabel("text.includeStructure"), self.incStructure)
         self.addRow(self._build.getLabel("text.includeComments"), self.incComments)
         self.addRow(self._build.getLabel("text.includeKeywords"), self.incKeywords)
         self.addRow(self._build.getLabel("text.includeBodyText"), self.incBodyText)
@@ -919,6 +921,7 @@ class _ContentTab(NScrollableForm):
     def loadContent(self) -> None:
         """Populate the widgets."""
         self.incSynopsis.setChecked(self._build.getBool("text.includeSynopsis"))
+        self.incStructure.setChecked(self._build.getBool("text.includeStructure"))
         self.incComments.setChecked(self._build.getBool("text.includeComments"))
         self.incKeywords.setChecked(self._build.getBool("text.includeKeywords"))
         self.incBodyText.setChecked(self._build.getBool("text.includeBodyText"))
@@ -928,6 +931,7 @@ class _ContentTab(NScrollableForm):
     def saveContent(self) -> None:
         """Save choices back into build object."""
         self._build.setValue("text.includeSynopsis", self.incSynopsis.isChecked())
+        self._build.setValue("text.includeStructure", self.incStructure.isChecked())
         self._build.setValue("text.includeComments", self.incComments.isChecked())
         self._build.setValue("text.includeKeywords", self.incKeywords.isChecked())
         self._build.setValue("text.includeBodyText", self.incBodyText.isChecked())

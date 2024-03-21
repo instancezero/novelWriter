@@ -569,6 +569,76 @@ class GuiMainMenu(QMenuBar):
             lambda: self.requestDocInsert.emit(nwDocInsert.SHORT)
         )
 
+        # Insert > Climax Comment
+        self.aInsClimax = self.mInsComments.addAction(self.tr("Scene Climax"))
+        # self.aInsClimax.setShortcut("Ctrl+K, S")
+        self.aInsClimax.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.CLIMAX)
+        )
+
+        # Insert > Complication Comment
+        self.aInsComplication = self.mInsComments.addAction(self.tr("Scene Complication"))
+        # self.aInsComplication.setShortcut("Ctrl+K, S")
+        self.aInsComplication.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.COMPLICATION)
+        )
+
+        # Insert > Crisis Comment
+        self.aInsCrisis = self.mInsComments.addAction(self.tr("Scene Crisis"))
+        # self.aInsCrisis.setShortcut("Ctrl+K, S")
+        self.aInsCrisis.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.CRISIS)
+        )
+
+        # Insert > Duration Comment
+        self.aInsDuration = self.mInsComments.addAction(self.tr("Scene Duration"))
+        # self.aInsDuration.setShortcut("Ctrl+K, S")
+        self.aInsDuration.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.DURATION)
+        )
+
+        # Insert > Incite Comment
+        self.aInsIncite = self.mInsComments.addAction(self.tr("Inciting Incident"))
+        # self.aInsIncite.setShortcut("Ctrl+K, S")
+        self.aInsIncite.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.INCITE)
+        )
+
+        # Insert > Polarity Comment
+        self.aInsPolarity = self.mInsComments.addAction(self.tr("Scene Polarity"))
+        # self.aInsPolarity.setShortcut("Ctrl+K, S")
+        self.aInsPolarity.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.POLARITY)
+        )
+
+        # Insert > Resolution Comment
+        self.aInsResolution = self.mInsComments.addAction(self.tr("Scene Resolution"))
+        # self.aInsResolution.setShortcut("Ctrl+K, S")
+        self.aInsResolution.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.RESOLUTION)
+        )
+
+        # Insert > Shift Comment
+        self.aInsShift = self.mInsComments.addAction(self.tr("Value Shift"))
+        # self.aInsShift.setShortcut("Ctrl+K, S")
+        self.aInsShift.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.SHIFT)
+        )
+
+        # Insert > Turning Comment
+        self.aInsTurning = self.mInsComments.addAction(self.tr("Turning Point"))
+        # self.aInsTurning.setShortcut("Ctrl+K, S")
+        self.aInsTurning.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.TURNING)
+        )
+
+        # Insert > When Comment
+        self.aInsWhen = self.mInsComments.addAction(self.tr("Scene Date/Time"))
+        # self.aInsWhen.setShortcut("Ctrl+K, S")
+        self.aInsWhen.triggered.connect(
+            lambda: self.requestDocInsert.emit(nwDocInsert.WHEN)
+        )
+
         # Insert > Symbols
         self.mInsBreaks = self.insMenu.addMenu(self.tr("Page Break and Space"))
 

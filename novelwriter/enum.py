@@ -64,9 +64,19 @@ class nwItemLayout(Enum):
 
 class nwComment(Enum):
 
-    PLAIN    = 0
-    SYNOPSIS = 1
-    SHORT    = 2
+    PLAIN        = 0
+    SYNOPSIS     = 1
+    SHORT        = 2
+    CLIMAX       = 3
+    COMPLICATION = 4
+    CRISIS       = 5
+    DURATION     = 6
+    INCITE       = 7
+    POLARITY     = 8
+    RESOLUTION   = 9
+    SHIFT        = 10
+    TURNING      = 11
+    WHEN         = 12
 
 # END Enum nwComment
 
@@ -132,17 +142,27 @@ class nwDocAction(Enum):
 
 class nwDocInsert(Enum):
 
-    NO_INSERT = 0
-    QUOTE_LS  = 1
-    QUOTE_RS  = 2
-    QUOTE_LD  = 3
-    QUOTE_RD  = 4
-    SYNOPSIS  = 5
-    SHORT     = 6
-    NEW_PAGE  = 7
-    VSPACE_S  = 8
-    VSPACE_M  = 9
-    LIPSUM    = 10
+    NO_INSERT    = 0
+    QUOTE_LS     = 1
+    QUOTE_RS     = 2
+    QUOTE_LD     = 3
+    QUOTE_RD     = 4
+    SYNOPSIS     = 5
+    SHORT        = 6
+    NEW_PAGE     = 7
+    VSPACE_S     = 8
+    VSPACE_M     = 9
+    LIPSUM       = 10
+    CLIMAX       = 11
+    COMPLICATION = 12
+    CRISIS       = 13
+    DURATION     = 14
+    INCITE       = 15
+    POLARITY     = 16
+    RESOLUTION   = 17
+    SHIFT        = 18
+    TURNING      = 19
+    WHEN         = 20
 
 # END Enum nwDocInsert
 
@@ -169,23 +189,33 @@ class nwWidget(Enum):
 
 class nwOutline(Enum):
 
-    TITLE  = 0
-    LEVEL  = 1
-    LABEL  = 2
-    LINE   = 3
-    CCOUNT = 4
-    WCOUNT = 5
-    PCOUNT = 6
-    POV    = 7
-    FOCUS  = 8
-    CHAR   = 9
-    PLOT   = 10
-    TIME   = 11
-    WORLD  = 12
-    OBJECT = 13
-    ENTITY = 14
-    CUSTOM = 15
-    SYNOP  = 16
+    TITLE        = 0
+    LEVEL        = 1
+    LABEL        = 2
+    LINE         = 3
+    CCOUNT       = 4
+    WCOUNT       = 5
+    PCOUNT       = 6
+    POV          = 7
+    FOCUS        = 8
+    CHAR         = 9
+    PLOT         = 10
+    TIME         = 11
+    WORLD        = 12
+    OBJECT       = 13
+    ENTITY       = 14
+    CUSTOM       = 15
+    SYNOP        = 16
+    CLIMAX       = 17
+    COMPLICATION = 18
+    CRISIS       = 19
+    DURATION     = 20
+    INCITE       = 21
+    POLARITY     = 22
+    RESOLUTION   = 23
+    SHIFT        = 24
+    TURNING      = 25
+    WHEN         = 26
 
 # END Enum nwOutline
 
@@ -200,5 +230,7 @@ class nwBuildFmt(Enum):
     EXT_MD = 5
     J_HTML = 6
     J_NWD  = 7
+    C_SS   = 8  # CSV scene structure
+    J_SS   = 9  # JSON Scene structure
 
 # END Enum nwBuildFormat

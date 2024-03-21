@@ -38,6 +38,7 @@ from novelwriter.core.item import NWItem
 from novelwriter.core.tomd import ToMarkdown
 from novelwriter.core.toodt import ToOdt
 from novelwriter.core.tohtml import ToHtml
+from novelwriter.core.toscene import ToScene
 from novelwriter.core.project import NWProject
 from novelwriter.core.tokenizer import Tokenizer
 from novelwriter.core.buildsettings import BuildSettings
@@ -115,6 +116,8 @@ class NWBuildDocument:
             yield from self.iterBuildMarkdown(path, bFormat == nwBuildFmt.EXT_MD)
         elif bFormat in (nwBuildFmt.NWD, nwBuildFmt.J_NWD):
             yield from self.iterBuildNWD(path, asJson=bFormat == nwBuildFmt.J_NWD)
+        elif bFormat in (nwBuildFmt.C_SS, nwBuildFmt.J_SS):
+            yield from self.iterBuildSceneStructure(path, asJson=bFormat == nwBuildFmt.J_SS)
         return
 
     def iterBuildOpenDocument(self, path: Path, isFlat: bool) -> Iterable[tuple[int, bool]]:
@@ -241,6 +244,35 @@ class NWBuildDocument:
 
         return
 
+    def iterBuildSceneStructure(self, path: Path, asJson: bool = False) -> Iterable[tuple[int, bool]]:
+        """Build a Scene Structure file."""
+        makeObj = ToScene(self._project)
+        filtered = self._build.buildItemFilter(self._project)
+
+        for i, tHandle in enumerate(self._queue):
+            self._error = None
+            if filtered.get(tHandle, (False, 0))[0]:
+                yield i, self._doBuild(makeObj, tHandle)
+            else:
+                yield i, False
+
+        if self._build.getBool("format.replaceTabs"):
+            makeObj.replaceTabs()
+
+        self._error = None
+        self._cache = makeObj
+
+        try:
+            if asJson:
+                makeObj.saveJson(path)
+            else:
+                makeObj.saveCSV(path)
+        except Exception as exc:
+            logException()
+            self._error = formatException(exc)
+
+        return
+
     ##
     #  Internal Functions
     ##
@@ -273,6 +305,7 @@ class NWBuildDocument:
         bldObj.setLineHeight(self._build.getFloat("format.lineHeight"))
 
         bldObj.setSynopsis(self._build.getBool("text.includeSynopsis"))
+        bldObj.setStructure(self._build.getBool("text.includeStructure"))
         bldObj.setComments(self._build.getBool("text.includeComments"))
         bldObj.setKeywords(self._build.getBool("text.includeKeywords"))
         bldObj.setBodyText(self._build.getBool("text.includeBodyText"))

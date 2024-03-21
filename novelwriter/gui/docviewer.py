@@ -201,7 +201,7 @@ class GuiDocViewer(QTextBrowser):
 
         sPos = self.verticalScrollBar().value()
         aDoc = ToHtml(SHARED.project)
-        aDoc.setPreview(CONFIG.viewComments, CONFIG.viewSynopsis)
+        aDoc.setPreview(CONFIG.viewComments, CONFIG.viewSynopsis, CONFIG.viewStructure)
         aDoc.setLinkHeaders(True)
 
         # Be extra careful here to prevent crashes when first opening a
@@ -893,10 +893,21 @@ class GuiDocViewFooter(QWidget):
         self.showSynopsis.toggled.connect(self._doToggleSynopsis)
         self.showSynopsis.setToolTip(self.tr("Show Synopsis Comments"))
 
+        # Show Scene Structure
+        self.showStructure = QToolButton(self)
+        self.showStructure.setText(self.tr("Structure"))
+        self.showStructure.setCheckable(True)
+        self.showStructure.setChecked(CONFIG.viewStructure)
+        self.showStructure.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        self.showStructure.setIconSize(QSize(fPx, fPx))
+        self.showStructure.toggled.connect(self._doToggleStructure)
+        self.showStructure.setToolTip(self.tr("Show Scene Structure"))
+
         lblFont = self.font()
         lblFont.setPointSizeF(0.9*SHARED.theme.fontPointSize)
         self.showComments.setFont(lblFont)
         self.showSynopsis.setFont(lblFont)
+        self.showStructure.setFont(lblFont)
 
         # Assemble Layout
         self.outerBox = QHBoxLayout()
@@ -904,6 +915,7 @@ class GuiDocViewFooter(QWidget):
         self.outerBox.addStretch(1)
         self.outerBox.addWidget(self.showComments, 0)
         self.outerBox.addWidget(self.showSynopsis, 0)
+        self.outerBox.addWidget(self.showStructure, 0)
         self.outerBox.setSpacing(hSp)
         self.setLayout(self.outerBox)
 
@@ -934,6 +946,7 @@ class GuiDocViewFooter(QWidget):
         self.showHide.setIcon(SHARED.theme.getIcon("panel"))
         self.showComments.setIcon(bulletIcon)
         self.showSynopsis.setIcon(bulletIcon)
+        self.showStructure.setIcon(bulletIcon)
 
         colText = SHARED.theme.colText
         buttonStyle = (
@@ -944,6 +957,7 @@ class GuiDocViewFooter(QWidget):
         self.showHide.setStyleSheet(buttonStyle)
         self.showComments.setStyleSheet(buttonStyle)
         self.showSynopsis.setStyleSheet(buttonStyle)
+        self.showStructure.setStyleSheet(buttonStyle)
 
         self.matchColours()
 
@@ -975,6 +989,13 @@ class GuiDocViewFooter(QWidget):
     def _doToggleSynopsis(self, state: bool) -> None:
         """Toggle the view synopsis button and reload the document."""
         CONFIG.viewSynopsis = state
+        self.docViewer.reloadText()
+        return
+
+    @pyqtSlot(bool)
+    def _doToggleStructure(self, state: bool) -> None:
+        """Toggle the view scene structure button and reload the document."""
+        CONFIG.viewStructure = state
         self.docViewer.reloadText()
         return
 

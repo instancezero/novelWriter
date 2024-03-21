@@ -620,6 +620,7 @@ class _DetailsWidget(QWidget):
         entries = [
             "text.includeSynopsis", "text.includeComments",
             "text.includeKeywords", "text.includeBodyText",
+            "text.includeStructure",
         ]
         for key in entries:
             sub = QTreeWidgetItem()

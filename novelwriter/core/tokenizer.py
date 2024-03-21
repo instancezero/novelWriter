@@ -80,20 +80,35 @@ class Tokenizer(ABC):
     FMT_SUB_E = 12  # End subscript
 
     # Block Type
-    T_EMPTY    = 1   # Empty line (new paragraph)
-    T_SYNOPSIS = 2   # Synopsis comment
-    T_SHORT    = 3   # Short description comment
-    T_COMMENT  = 4   # Comment line
-    T_KEYWORD  = 5   # Command line
-    T_TITLE    = 6   # Title
-    T_UNNUM    = 7   # Unnumbered
-    T_HEAD1    = 8   # Header 1
-    T_HEAD2    = 9   # Header 2
-    T_HEAD3    = 10  # Header 3
-    T_HEAD4    = 11  # Header 4
-    T_TEXT     = 12  # Text line
-    T_SEP      = 13  # Scene separator
-    T_SKIP     = 14  # Paragraph break
+    T_EMPTY        = 1   # Empty line (new paragraph)
+    T_SYNOPSIS     = 2   # Synopsis comment
+    T_SHORT        = 3   # Short description comment
+    T_COMMENT      = 4   # Comment line
+    T_KEYWORD      = 5   # Command line
+    T_TITLE        = 6   # Title
+    T_UNNUM        = 7   # Unnumbered
+    T_HEAD1        = 8   # Header 1
+    T_HEAD2        = 9   # Header 2
+    T_HEAD3        = 10  # Header 3
+    T_HEAD4        = 11  # Header 4
+    T_TEXT         = 12  # Text line
+    T_SEP          = 13  # Scene separator
+    T_SKIP         = 14  # Paragraph break
+    T_CLIMAX       = 15  # Climax comment
+    T_COMPLICATION = 16  # Complication comment
+    T_CRISIS       = 17  # Crisis Comment
+    T_DURATION     = 18  # Duration Comment
+    T_INCITE       = 19  # Inciting incident Comment
+    T_POLARITY     = 20  # Polarity Comment
+    T_RESOLUTION   = 21  # Resolution Comment
+    T_SHIFT        = 22  # Value shift Comment
+    T_TURNING      = 23  # Turning point Comment
+    T_WHEN         = 24  # When Comment
+
+    T_STRUCTURE_LIST = [
+        T_CLIMAX, T_COMPLICATION, T_CRISIS, T_DURATION, T_INCITE,
+        T_POLARITY, T_RESOLUTION, T_SHIFT, T_TURNING, T_WHEN
+    ]
 
     # Block Style
     A_NONE     = 0x0000  # No special style
@@ -133,6 +148,7 @@ class Tokenizer(ABC):
         self._doBodyText  = True     # Include body text
         self._doSynopsis  = False    # Also process synopsis comments
         self._doComments  = False    # Also process comments
+        self._doStructure = False    # Also process scene structure comments
         self._doKeywords  = False    # Also process keywords like tags and references
 
         # Margins
@@ -315,6 +331,11 @@ class Tokenizer(ABC):
         self._doSynopsis = state
         return
 
+    def setStructure(self, state: bool) -> None:
+        """Include scene structure comments in build."""
+        self._doStructure = state
+        return
+
     def setComments(self, state: bool) -> None:
         """Include comments in build."""
         self._doComments = state
@@ -483,6 +504,60 @@ class Tokenizer(ABC):
                         self.T_SHORT, nHead, cText, [], sAlign
                     ))
                     if self._doSynopsis and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.CLIMAX:
+                    self._tokens.append((
+                        self.T_CLIMAX, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.COMPLICATION:
+                    self._tokens.append((
+                        self.T_COMPLICATION, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.DURATION:
+                    self._tokens.append((
+                        self.T_DURATION, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.INCITE:
+                    self._tokens.append((
+                        self.T_INCITE, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.POLARITY:
+                    self._tokens.append((
+                        self.T_POLARITY, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.RESOLUTION:
+                    self._tokens.append((
+                        self.T_RESOLUTION, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.SHIFT:
+                    self._tokens.append((
+                        self.T_SHIFT, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.TURNING:
+                    self._tokens.append((
+                        self.T_TURNING, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
+                        tmpMarkdown.append("%s\n" % aLine)
+                elif cStyle == nwComment.WHEN:
+                    self._tokens.append((
+                        self.T_WHEN, nHead, cText, [], sAlign
+                    ))
+                    if self._doStructure and self._keepMarkdown:
                         tmpMarkdown.append("%s\n" % aLine)
                 else:
                     self._tokens.append((
