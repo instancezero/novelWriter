@@ -80,7 +80,7 @@ SETTINGS_TEMPLATE = {
     "format.leftMargin":      (float, 2.0),
     "format.rightMargin":     (float, 2.0),
     "odt.addColours":         (bool, True),
-    "odt.pageHeaderText":     (str, nwHeadFmt.ODT_PAGE),
+    "odt.pageHeader":         (str, nwHeadFmt.ODT_AUTO),
     "odt.pageCountOffset":    (int, 0),
     "html.addStyles":         (bool, True),
 }
@@ -102,7 +102,6 @@ SETTINGS_LABELS = {
 
     "text.grpContent":        QT_TRANSLATE_NOOP("Builds", "Text Content"),
     "text.includeSynopsis":   QT_TRANSLATE_NOOP("Builds", "Include Synopsis"),
-    "text.includeStructure":  QT_TRANSLATE_NOOP("Builds", "Include Structure"),
     "text.includeComments":   QT_TRANSLATE_NOOP("Builds", "Include Comments"),
     "text.includeKeywords":   QT_TRANSLATE_NOOP("Builds", "Include Keywords"),
     "text.includeBodyText":   QT_TRANSLATE_NOOP("Builds", "Include Body Text"),
@@ -129,7 +128,7 @@ SETTINGS_LABELS = {
 
     "odt":                    QT_TRANSLATE_NOOP("Builds", "Open Document (.odt)"),
     "odt.addColours":         QT_TRANSLATE_NOOP("Builds", "Add Highlight Colours"),
-    "odt.pageHeaderText":     QT_TRANSLATE_NOOP("Builds", "Page Header"),
+    "odt.pageHeader":         QT_TRANSLATE_NOOP("Builds", "Page Header"),
     "odt.pageCountOffset":    QT_TRANSLATE_NOOP("Builds", "Page Counter Offset"),
 
     "html":                   QT_TRANSLATE_NOOP("Builds", "HTML (.html)"),

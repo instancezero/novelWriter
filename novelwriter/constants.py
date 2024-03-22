@@ -343,6 +343,7 @@ class nwHeadFmt:
     ODT_PROJECT = "{Project}"
     ODT_AUTHOR = "{Author}"
     ODT_PAGE = "{Page}"
+    ODT_AUTO = "{Project} / {Author} / {Page}"
 
 # END Class nwHeadFmt
 
